@@ -1,11 +1,63 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+@font-face {
+  font-family: 'Makira';
+  src: url(/fonts/makira-regular.otf) format('opentype');
   font-weight: 400;
+}
 
+@font-face {
+  font-family: 'Makira';
+  src: url(/fonts/makira-medium.otf) format('opentype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Makira';
+  src: url(/fonts/makira-semibold.otf) format('opentype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Makira';
+  src: url(/fonts/makira-bold.otf) format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Makira';
+  src: url(/fonts/makira-extrabold.otf) format('opentype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Makira';
+  src: url(/fonts/makira-black.otf) format('opentype');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'InstrumentSerif';
+  src: url(/fonts/InstrumentSerif-Italic.ttf) format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'InconsolataBold';
+  src: url(/fonts/Inconsolata-Bold.ttf) format('truetype');
+}
+
+:root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  --main-bg-color-light: rgba(244, 243, 240, 1);
+  --main-bg-color-dark: rgba(9, 9, 11, 1);
+
+  --white: #d4d2cb;
+  --white-hover: #a09f99;
+  --grey: #5e5e5e;
+  --black: #09090b;
+  --orange: #c46225;
+  --span-text: #7b7a73;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,56 +65,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  color-scheme: light dark;
+  background-color: var(--main-bg-color-dark);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'Makira', sans-serif;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 @media (prefers-color-scheme: light) {
-  :root {
+  html {
     color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    background-color: var(--main-bg-color-light);
   }
 }
