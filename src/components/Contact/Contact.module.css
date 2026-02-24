@@ -119,3 +119,61 @@ textarea {
     color: var(--black);
   }
 }
+
+@media (max-width: 1280px) {
+  .contactSection {
+    padding: 0 6rem;
+  }
+
+  .innerContact {
+    padding: 3rem 6rem 0 6rem;
+  }
+
+  .innerForm {
+    padding: 0 6rem;
+  }
+
+  .formSubmit {
+    padding: 1rem 6rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contactSection {
+    padding: 0 3rem;
+  }
+
+  .innerContact {
+    padding: 3rem 3rem 0 3rem;
+  }
+
+  .innerForm {
+    padding: 0 3rem;
+  }
+
+  .formSubmit {
+    padding: 1rem 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 0 1.5rem;
+  }
+
+  .innerContact {
+    padding: 2rem 1.5rem 0 1.5rem;
+  }
+
+  .innerForm {
+    padding: 0 1.5rem;
+  }
+
+  .formDetails {
+    flex-direction: column;
+  }
+
+  .formSubmit {
+    padding: 1rem 0;
+  }
+}

@@ -45,3 +45,14 @@
   font-size: 1rem;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .glassBubble {
+    margin: 0.5rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .glassBubble p {
+    font-size: 0.85rem;
+  }
+}

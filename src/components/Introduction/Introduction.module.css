@@ -41,7 +41,7 @@
 
 .wrapperFeatures {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   padding: 0 10rem;
   background-image: url(/bg-pattern-slash.svg);
   border-left: 1px solid var(--grey);
@@ -89,6 +89,7 @@
 .innerFeature img {
   flex: 1/4;
   min-height: 2rem;
+  max-width: 100%;
 }
 
 @media (prefers-color-scheme: light) {
@@ -105,5 +106,75 @@
   .outerFeature {
     background-color: var(--main-bg-color-light);
     border-color: var(--white);
+  }
+}
+
+@media (max-width: 1280px) {
+  .featuresSection {
+    padding: 0 6rem;
+  }
+
+  .outerIntroduction {
+    padding: 0 6rem;
+  }
+
+  .outerFeatureText {
+    padding: 0 6rem;
+  }
+
+  .wrapperFeatures {
+    padding: 0 6rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .featuresSection {
+    padding: 0 3rem;
+  }
+
+  .outerIntroduction {
+    padding: 0 3rem;
+  }
+
+  .outerFeatureText {
+    padding: 0 3rem;
+  }
+
+  .outerInnerText h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .wrapperFeatures {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .featuresSection {
+    padding: 0 1.5rem;
+  }
+
+  .outerIntroduction {
+    padding: 0 1.5rem;
+  }
+
+  .outerFeatureText {
+    padding: 0 1.5rem;
+  }
+
+  .outerInnerText h2 {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+  }
+
+  .wrapperFeatures {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+  }
+
+  .outerFeature + .outerFeature {
+    border-left-width: 1px;
+    border-left-style: solid;
   }
 }
