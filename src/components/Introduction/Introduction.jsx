@@ -4,7 +4,7 @@ import featureImgCloud from '../../assets/cloud.svg';
 
 function Introduction() {
   return (
-    <>
+    <div className={styles.featuresSection}>
       <div className={styles.outerIntroduction}>
         <div className={styles.innerIntroduction}>
           <span>[01] Introduction</span>
@@ -42,7 +42,7 @@ function Introduction() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

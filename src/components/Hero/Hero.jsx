@@ -1,7 +1,6 @@
 import styles from './Hero.module.css';
-import herobg from '../../assets/hero.png';
+import herobg from '../../assets/cv_hero.svg';
 import LiquidBubble from '../LiquidBubble/LiquidBubble';
-import cvimg from '../../assets/cv.png';
 function Hero() {
   return (
     <div className={styles.outerHero}>
@@ -17,7 +16,6 @@ function Hero() {
           <LiquidBubble text={'Fully customisable layouts '} />
           <LiquidBubble text={'Real-Time  cloud edits'} />
         </div>
-        {/* <div className={`${styles.overlay} ${styles.center}`}><img src={cvimg} /></div> */}
       </div>
     </div>
   );

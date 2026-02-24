@@ -45,6 +45,12 @@
   src: url(/fonts/Inconsolata-Bold.ttf) format('truetype');
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -58,6 +64,7 @@
   --black: #09090b;
   --orange: #c46225;
   --span-text: #7b7a73;
+  --input-background-dark: #191919;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -74,9 +81,19 @@ body {
   margin: 0;
   font-family: 'Makira', sans-serif;
 }
+
+button {
+  font-family: 'Makira', sans-serif;
+}
 @media (prefers-color-scheme: light) {
   html {
     color: #213547;
     background-color: var(--main-bg-color-light);
+  }
+  p,
+  h1,
+  h2,
+  h3 {
+    color: var(--black);
   }
 }
