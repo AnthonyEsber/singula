@@ -1,0 +1,121 @@
+.contactSection {
+  padding: 0rem 10rem;
+}
+
+.outerContact {
+  background-image: url(/bg-pattern-slash.svg);
+  border-right: 1px solid var(--grey);
+  border-left: 1px solid var(--grey);
+}
+
+.outerContact span {
+  font-family: 'InconsolataBold', sans-serif;
+  color: var(--span-text);
+  margin-bottom: 1px;
+}
+
+.innerContact {
+  padding: 3rem 10rem 0rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.outerForm {
+  background-image: url(/bg-pattern-slash.svg);
+  border: 1px solid var(--grey);
+  border-top: none;
+}
+
+.innerForm {
+  padding: 0rem 10rem;
+}
+
+.innerForm form {
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--grey);
+  border-bottom: none;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.innerForm h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.innerForm input,
+textarea {
+  flex: 1;
+  border: 1px solid var(--grey);
+  background-color: var(--input-background-dark);
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: 'InconsolataBold';
+}
+
+.innerForm textarea {
+  resize: vertical;
+}
+
+.formDetails {
+  display: flex;
+  gap: 1rem;
+}
+
+.formMessage {
+  display: flex;
+}
+
+.formSubmit {
+  padding: 1rem 10rem;
+}
+
+.formSubmit button {
+  background-color: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  padding: 1rem 0rem;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.formSubmit button:hover {
+  background-color: var(--orange);
+  color: var(--black);
+}
+
+@media (prefers-color-scheme: light) {
+  .outerContact,
+  .outerForm {
+    background-image: url(/bg-pattern-slash-light.svg);
+    border-right: 1px solid var(--white);
+    border-left: 1px solid var(--white);
+  }
+  .outerForm {
+    border: 1px solid var(--white);
+    border-top: none;
+  }
+  .innerForm form {
+    border-top: none;
+    border-bottom: none;
+    border: 1px solid var(--white);
+    background-color: var(--main-bg-color-light);
+  }
+
+  .innerForm input,
+  .innerForm textarea {
+    background-color: var(--white);
+    border: 1px solid var(--white);
+  }
+
+  .innerPlan ul {
+    color: var(--black);
+  }
+}

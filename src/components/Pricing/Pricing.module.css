@@ -1,0 +1,106 @@
+.pricingSection {
+  padding: 0rem 10rem;
+}
+
+.outerPricing {
+  padding: 0rem 10rem;
+  background-image: url(/bg-pattern-slash.svg);
+  border-right: 1px solid var(--grey);
+  border-left: 1px solid var(--grey);
+}
+
+.outerPricing span {
+  font-family: 'InconsolataBold', sans-serif;
+  color: var(--span-text);
+  margin-bottom: 1px;
+}
+
+.innerPricing {
+  padding: 3rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.wrapperPlans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 10rem;
+  background-image: url(/bg-pattern-slash.svg);
+  border-right: 1px solid var(--grey);
+  border-left: 1px solid var(--grey);
+  align-items: stretch;
+}
+
+.outerPlan {
+  background-color: var(--black);
+  border-style: solid;
+  border-color: var(--grey);
+  border-width: 1px 1px 1px 1px;
+  display: flex;
+}
+
+.outerPlan + .outerPlan {
+  border-left: 0;
+}
+
+.innerPlan {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.innerPlan button {
+  background-color: var(--white);
+  border: none;
+  color: var(--black);
+  padding: 1rem 0rem;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.innerPlan button:hover {
+  background-color: var(--white-hover);
+}
+
+.buyPlan {
+  margin-top: auto;
+  padding: 2rem;
+}
+
+.innerPlan h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.innerPlan span {
+  font-size: 1rem;
+  color: var(--grey);
+}
+
+.innerPlan li::marker {
+  color: var(--orange);
+}
+
+@media (prefers-color-scheme: light) {
+  .outerPricing,
+  .wrapperPlans {
+    background-image: url(/bg-pattern-slash-light.svg);
+    border-right: 1px solid var(--white);
+    border-left: 1px solid var(--white);
+  }
+  .outerPlan {
+    background-color: var(--main-bg-color-light);
+    border-color: var(--white);
+  }
+
+  .innerPlan ul {
+    color: var(--black);
+  }
+}

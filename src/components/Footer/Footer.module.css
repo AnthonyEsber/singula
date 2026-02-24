@@ -1,0 +1,26 @@
+.outerFooter {
+  padding: 0rem calc(20rem + 1px);
+}
+
+.innerFooter {
+  display: flex;
+  border: 1px solid var(--grey);
+  border-top: none;
+  border-bottom: none;
+  padding: 3rem 2rem;
+  font-size: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: light) {
+  .innerFooter {
+    border: 1px solid var(--white);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .innerFooter p {
+    color: var(--grey);
+  }
+}
