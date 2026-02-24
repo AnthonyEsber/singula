@@ -16,7 +16,7 @@
 }
 
 .innerPricing {
-  padding: 3rem 0rem;
+  padding: 3rem 0rem 0rem 0rem;
   display: flex;
   justify-content: space-between;
   text-transform: uppercase;
@@ -102,5 +102,79 @@
 
   .innerPlan ul {
     color: var(--black);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .outerPricing,
+  .wrapperPlans {
+    background-image: url(/bg-pattern-slash-light.svg);
+    border-right: 1px solid var(--white);
+    border-left: 1px solid var(--white);
+  }
+  .outerPlan {
+    background-color: var(--main-bg-color-light);
+    border-color: var(--white);
+  }
+
+  .innerPlan ul {
+    color: var(--black);
+  }
+}
+
+@media (max-width: 1280px) {
+  .pricingSection {
+    padding: 0 6rem;
+  }
+
+  .outerPricing {
+    padding: 0 6rem;
+  }
+
+  .wrapperPlans {
+    padding: 0 6rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pricingSection {
+    padding: 0 3rem;
+  }
+
+  .outerPricing {
+    padding: 0 3rem;
+  }
+
+  .wrapperPlans {
+    padding: 0 3rem;
+  }
+
+  .buyPlan {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricingSection {
+    padding: 0 1.5rem;
+  }
+
+  .outerPricing {
+    padding: 0 1.5rem;
+  }
+
+  .innerPricing {
+    padding: 2rem 0;
+  }
+
+  .wrapperPlans {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+  }
+
+  .outerPlan + .outerPlan {
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-top: none;
   }
 }

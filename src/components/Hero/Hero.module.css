@@ -70,3 +70,47 @@
   height: 10rem;
   display: block;
 }
+
+@media (max-width: 1024px) {
+  .outerHero {
+    padding: 0 4rem;
+  }
+
+  .introText {
+    line-height: 3rem;
+  }
+
+  .introText h1 {
+    font-size: 3rem;
+  }
+
+  .overlay.topLeft {
+    top: 15%;
+    left: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .outerHero {
+    padding: 0 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .introText {
+    line-height: 2.25rem;
+  }
+
+  .introText h1 {
+    font-size: 2.25rem;
+  }
+
+  .heroImage {
+    min-height: 320px;
+  }
+
+  .overlay.topLeft {
+    top: 5%;
+    left: 2%;
+  }
+}

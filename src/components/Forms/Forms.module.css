@@ -1,0 +1,143 @@
+.formContainer {
+  inline-size: min(30vw, 80rem);
+  margin-inline: auto;
+
+  padding: 3rem 2rem;
+  background-color: var(--main-bg-color-dark);
+}
+
+.formContainer form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer input {
+  padding: 1rem;
+  border-radius: 0;
+  border: 1px solid var(--grey);
+  background-color: var(--input-background-dark);
+  font-size: 1rem;
+  font-family: 'InconsolataBold';
+  text-transform: uppercase;
+  transition: all 0.1s ease;
+}
+
+.formContainer input:focus {
+  outline: 1px solid var(--main-bg-color-light);
+  z-index: 1;
+}
+
+.formContainer input + input {
+  border-top: none;
+}
+
+.formContainer h1 {
+  font-weight: 400;
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
+.fromButton {
+  margin: 1rem 0.5rem;
+}
+
+.fromButton button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  background-color: var(--main-bg-color-light);
+  color: var(--black);
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: -7%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fromButton button:hover {
+  background-color: var(--white-hover);
+}
+
+.forgotPassword {
+  cursor: pointer;
+  border: 1px solid var(--grey);
+  border-top: none;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+.forgotPassword:hover {
+  background-color: var(--grey);
+}
+
+.switchFormModeAsk {
+  display: flex;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.termsAndConditions {
+  border: 1px solid var(--grey);
+  border-top: none;
+  padding: 1rem;
+  display: flex;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.chk {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.termsAndConditions label::before {
+  content: '';
+  display: inline-block;
+  inline-size: 1rem;
+  block-size: 1rem;
+  border: 1px solid var(--grey);
+  background-color: var(--input-background-dark);
+  border-radius: 0.25rem;
+  margin-inline-end: 0.5rem;
+  box-shadow: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.chk:checked + label::before {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.termsAndConditions:hover label::before {
+  border-color: var(--main-bg-color-light);
+}
+
+.chk:focus + label::before {
+  outline: 1px solid var(--main-bg-color-light);
+  outline-offset: 1px;
+}
+
+.chk:disabled + label {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.termsAndConditions label {
+  display: flex;
+  align-items: center;
+}
