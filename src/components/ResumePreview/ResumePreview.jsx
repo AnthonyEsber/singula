@@ -1,24 +1,33 @@
 import styles from './ResumePreview.module.css';
 
+const SCALE_MAP = { small: 1, medium: 1.4, large: 1.75, thumbnail: 0.32 };
+
 function ResumePreview({ content }) {
   if (!content) {
     return <div className={styles.placeholder}>No preview available</div>;
   }
 
-  const { fullName, phoneNumber, location, email, sections = [] } = content;
+  const { fullName, phoneNumber, location, email, sections = [], customization } = content;
+
+  const scale = SCALE_MAP[customization.fontSize] ?? SCALE_MAP.thumbnail;
+  const scaledWidth = `${Math.round(100 / scale)}%`;
 
   const profile = sections.find((s) => s.sectionId === 'profile' && !s.isHidden);
   const education = sections.find((s) => s.sectionId === 'education' && !s.isHidden);
   const skills = sections.find((s) => s.sectionId === 'skills' && !s.isHidden);
   const experience = sections.find((s) => s.sectionId === 'experience' && !s.isHidden);
 
-  const stripHtml = (html) => html?.replace(/<[^>]*>/g, '') ?? '';
-
   return (
-    <div className={styles.previewWrapper}>
-      <div className={styles.previewContent}>
+    <div
+      className={styles.previewWrapper}
+      style={{ '--cv-accent': customization.accentColor, '--cv-font': customization.fontFamily }}
+    >
+      <div
+        className={styles.previewContent}
+        style={{ transform: `scale(${scale})`, width: scaledWidth }}
+      >
         <div className={styles.header}>
-          <h3 className={styles.name}>{stripHtml(fullName)}</h3>
+          <h3 className={styles.name}>{fullName}</h3>
           <div className={styles.contactRow}>
             {phoneNumber && <span>{phoneNumber}</span>}
             {location && <span>{location}</span>}
@@ -29,7 +38,7 @@ function ResumePreview({ content }) {
         {profile && (
           <div className={styles.section}>
             <h4 className={styles.sectionTitle}>Profile</h4>
-            <p className={styles.profileText}>{stripHtml(profile.text)}</p>
+            <p className={styles.profileText}>{profile.text}</p>
           </div>
         )}
 
@@ -56,14 +65,11 @@ function ResumePreview({ content }) {
           <div className={styles.section}>
             <h4 className={styles.sectionTitle}>Skills</h4>
             <div className={styles.skillsList}>
-              {skills.skills.slice(0, 6).map((skill) => (
+              {skills.skills.map((skill) => (
                 <span key={skill} className={styles.skillTag}>
                   {skill}
                 </span>
               ))}
-              {skills.skills.length > 6 && (
-                <span className={styles.skillTag}>+{skills.skills.length - 6}</span>
-              )}
             </div>
           </div>
         )}

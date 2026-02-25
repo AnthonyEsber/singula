@@ -1,6 +1,6 @@
 .previewWrapper {
   width: 100%;
-  aspect-ratio: 8.5 / 11;
+  aspect-ratio: 1 / 1.4142;
   overflow: hidden;
   background: #ffffff;
   border-radius: 4px;
@@ -13,7 +13,7 @@
   transform-origin: top left;
   width: 312%;
   padding: 2.4rem 2rem;
-  font-family: 'Makira', sans-serif;
+  font-family: var(--cv-font, 'Makira', sans-serif);
   color: #1a1a1a;
   pointer-events: none;
   user-select: none;
@@ -21,7 +21,7 @@
 
 .placeholder {
   width: 100%;
-  aspect-ratio: 8.5 / 11;
+  aspect-ratio: 1 / 1.4142;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
 
 .header {
   margin-bottom: 1rem;
-  border-bottom: 2px solid #1a1a1a;
+  border-bottom: 2px solid var(--cv-accent, #1a1a1a);
   padding-bottom: 0.6rem;
 }
 
@@ -64,9 +64,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #1a1a1a;
+  color: var(--cv-accent, #1a1a1a);
   margin: 0 0 0.25rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--cv-accent, #ccc);
   padding-bottom: 0.15rem;
 }
 
@@ -75,11 +75,6 @@
   line-height: 1.5;
   color: #333;
   margin: 0;
-  display: -webkit-box;
-  line-clamp: 5;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .expItem {

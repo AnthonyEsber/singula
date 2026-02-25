@@ -6,6 +6,7 @@ import Login from '../routes/Login';
 import Register from '../routes/Register';
 import UserlandLayout from '../layouts/UserlandLayout';
 import Dashboard from '../routes/Dashboard';
+import Editor from '../routes/Editor';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         </Route>
         <Route element={<UserlandLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/edit/:id" element={<Editor />} />
         </Route>
       </Routes>
     </BrowserRouter>

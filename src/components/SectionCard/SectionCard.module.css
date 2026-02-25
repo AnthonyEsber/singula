@@ -1,0 +1,166 @@
+.card {
+  transition: opacity 0.2s ease;
+}
+
+.cardHidden {
+  opacity: 0.45;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  background-color: var(--input-background-dark);
+}
+
+.cardTitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--white);
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.actionBtn {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.65rem;
+  font-family: 'InconsolataBold', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.15s ease;
+}
+
+.actionBtn:hover {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.actionBtnDelete:hover {
+  border-color: #c0392b;
+  color: #c0392b;
+}
+
+.cardBody {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  border: 1px solid var(--grey);
+  background-color: var(--input-background-dark);
+  font-size: 0.8rem;
+  color: var(--white);
+  transition: all 0.1s ease;
+  width: 100%;
+}
+
+.input + .input {
+  border-top: none;
+}
+
+.input:focus {
+  outline: 1px solid var(--main-bg-color-light);
+  z-index: 1;
+  position: relative;
+}
+
+.textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  border: 1px solid var(--grey);
+  background-color: var(--input-background-dark);
+  font-size: 0.8rem;
+  font-family: 'Makira', sans-serif;
+  color: var(--white);
+  resize: vertical;
+  min-height: 80px;
+  width: 100%;
+  transition: all 0.1s ease;
+}
+
+/* Textarea that follows an input should connect visually */
+.input ~ .textarea {
+  border-top: none;
+}
+
+.textarea:focus {
+  outline: 1px solid var(--main-bg-color-light);
+}
+
+/* Skills */
+.skillsTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.5rem 0;
+}
+
+.skillTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-family: 'InconsolataBold', monospace;
+  background: var(--input-background-dark);
+  border: 1px solid var(--grey);
+  color: var(--white);
+}
+
+.skillRemove {
+  background: none;
+  border: none;
+  color: var(--span-text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.1s ease;
+}
+
+.skillRemove:hover {
+  color: #c0392b;
+}
+
+@media (prefers-color-scheme: light) {
+  .card {
+    border-color: #b0afa9;
+  }
+
+  .cardHeader {
+    background-color: #ebebeb;
+  }
+
+  .cardTitle,
+  .actionBtn {
+    color: #5e5e5e;
+  }
+
+  .input,
+  .textarea {
+    background-color: #f4f3f0;
+    color: var(--black);
+    border-color: #b0afa9;
+  }
+
+  .skillTag {
+    background-color: #ebebeb;
+    border-color: #b0afa9;
+    color: var(--black);
+  }
+}
