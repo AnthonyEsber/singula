@@ -8,7 +8,7 @@ function PreviewPanel({ content }) {
         <span className={styles.label}>[Live Preview]</span>
       </div>
       <div className={styles.container}>
-        <ResumePreview content={content} />
+        <ResumePreview content={content} isThumbnail={false} />
       </div>
     </div>
   );

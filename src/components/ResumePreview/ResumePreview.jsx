@@ -2,14 +2,17 @@ import styles from './ResumePreview.module.css';
 
 const SCALE_MAP = { small: 1, medium: 1.4, large: 1.75, thumbnail: 0.32 };
 
-function ResumePreview({ content }) {
+function ResumePreview({ content, isThumbnail }) {
   if (!content) {
     return <div className={styles.placeholder}>No preview available</div>;
   }
 
   const { fullName, phoneNumber, location, email, sections = [], customization } = content;
 
-  const scale = SCALE_MAP[customization.fontSize] ?? SCALE_MAP.thumbnail;
+  const scale =
+    SCALE_MAP[customization.fontSize] && !isThumbnail
+      ? SCALE_MAP[customization.fontSize]
+      : SCALE_MAP.thumbnail;
   const scaledWidth = `${Math.round(100 / scale)}%`;
 
   const profile = sections.find((s) => s.sectionId === 'profile' && !s.isHidden);
