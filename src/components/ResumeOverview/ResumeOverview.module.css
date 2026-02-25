@@ -1,0 +1,14 @@
+.overviewSection {
+  padding: 1rem 10rem;
+}
+
+.overviewTitle {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.overviewTitle span {
+  font-family: 'InstrumentSerif', serif;
+  font-size: 4rem;
+  color: var(--orange);
+}

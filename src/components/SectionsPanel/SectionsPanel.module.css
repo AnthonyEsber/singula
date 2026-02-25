@@ -1,0 +1,77 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.heading {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--span-text);
+}
+
+.addWrapper {
+  position: relative;
+}
+
+.addBtn {
+  width: 100%;
+  padding: 0.65rem;
+  background: transparent;
+  border: 1px dashed var(--grey);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.addBtn:hover {
+  border-color: var(--white);
+  color: var(---white);
+}
+
+.addMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: var(--input-background-dark);
+  border: 1px solid var(--grey);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.addMenuItem {
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--grey);
+  color: var(--white);
+  font-size: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.addMenuItem:last-child {
+  border-bottom: none;
+}
+
+.addMenuItem:hover {
+  background: var(--grey);
+}
+
+@media (prefers-color-scheme: light) {
+  .heading {
+    color: #5e5e5e;
+  }
+
+  .addMenu {
+    background-color: #f4f3f0;
+    border-color: #b0afa9;
+  }
+
+  .addMenuItem {
+    color: var(--black);
+    border-bottom-color: #b0afa9;
+  }
+}
