@@ -4,7 +4,6 @@ import PersonalInformationPanel from '../components/PersonalInformationPanel/Per
 import PreviewPanel from '../components/PreviewPanel/PreviewPanel';
 import SectionsPanel from '../components/SectionsPanel/SectionsPanel';
 import styles from '../styles/Userland.module.css';
-import { DUMMY_RESUME } from '../utils/mockResume';
 import { useEffect, useState } from 'react';
 import {
   clearCurrentResume,
