@@ -1,3 +1,7 @@
+/**
+ * @deprecated Use supabase implementation instead. this should be used only in dev.
+ */
+
 export const DUMMY_RESUME = [
   {
     id: 1,
