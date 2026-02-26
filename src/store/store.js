@@ -1,8 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { loadUiState, saveUiState } from '../lib/storage';
+import authReducer from './authSlice';
+import resumeReducer from './resumeSlice';
+import uiReducer from './uiSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    auth: authReducer,
+    resumes: resumeReducer,
+    ui: uiReducer,
+  },
 
   preloadedState: {
     ui: loadUiState(),

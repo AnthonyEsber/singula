@@ -15,7 +15,7 @@ const uiSlice = createSlice({
       state.theme = action.payload;
     },
     setSearchText(state, action) {
-      state.resumeFilters.sortBy = action.payload;
+      state.resumeFilters.searchText = action.payload;
     },
     setSortBy(state, action) {
       state.resumeFilters.sortBy = action.payload;

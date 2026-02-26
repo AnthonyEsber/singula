@@ -78,6 +78,7 @@
   display: flex;
   justify-content: center;
   font-size: 0.8rem;
+  cursor: pointer;
 }
 
 .termsAndConditions {
@@ -140,4 +141,70 @@
 .termsAndConditions label {
   display: flex;
   align-items: center;
+}
+
+.errorMessage {
+  border: 1px solid #e53e3e;
+  border-top: none;
+  padding: 0.75rem 1rem;
+  color: #e53e3e;
+  font-size: 0.85rem;
+  background-color: rgba(229, 62, 62, 0.08);
+}
+
+html[data-theme='light'] .formContainer {
+  background-color: var(--main-bg-color-light);
+}
+
+html[data-theme='light'] .formContainer input {
+  background-color: var(--main-bg-color-light);
+  border: 1px solid var(--white);
+  color: var(--black);
+}
+html[data-theme='light'] .formContainer input + input {
+  border-top: none;
+}
+html[data-theme='light'] .formContainer input:focus {
+  outline: 1px solid var(--grey);
+  z-index: 1;
+}
+
+html[data-theme='light'] .fromButton button {
+  background-color: var(--black);
+  color: var(--main-bg-color-light);
+}
+
+html[data-theme='light'] .fromButton button:hover {
+  background-color: var(--white-hover);
+}
+
+html[data-theme='light'] .switchFormModeAsk {
+  color: var(--black);
+}
+
+html[data-theme='light'] .termsAndConditions label::before {
+  background-color: var(--white);
+}
+
+html[data-theme='light'] .termsAndConditions {
+  color: var(--grey);
+}
+
+html[data-theme='light'] .chk:checked + label::before {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    inline-size: min(92vw, 80rem);
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .formContainer {
+    inline-size: min(60vw, 100rem);
+    padding: 2rem 1.25rem;
+  }
 }

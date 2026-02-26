@@ -2,20 +2,23 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { supabase } from '../lib/supabase';
 
 export const fetchResumes = createAsyncThunk(
-  'resume/fetchResumes',
+  'resumes/fetchResumes',
   async (_, { getState, rejectWithValue }) => {
     const { user } = getState().auth;
-    const { data, error } = await supabase.from('resumes').select('*').eq('owner_id', user.id);
+    const { data, error } = await supabase
+      .from('resumes')
+      .select('*')
+      .eq('owner_id', user.id)
+      .order('updated_at', { ascending: false });
     if (error) return rejectWithValue(error.message);
     return data;
   }
 );
 
 export const fetchResumeById = createAsyncThunk(
-  'resume/fetchResumeById',
+  'resumes/fetchResumeById',
   async (id, { rejectWithValue }) => {
     const { data, error } = await supabase.from('resumes').select('*').eq('id', id).single();
-
     if (error) return rejectWithValue(error.message);
     return data;
   }
@@ -29,7 +32,7 @@ export const createResume = createAsyncThunk(
 
     if (profile?.tier === 'free' && list.length >= 1) {
       return rejectWithValue(
-        'Free plan is limited to 1 resume. Upgrade to Pro for unlimited resumes'
+        'Free plan is limited to 1 resume. Upgrade to Pro for unlimited resumes.'
       );
     }
 
@@ -38,7 +41,6 @@ export const createResume = createAsyncThunk(
       .insert({ item_name: 'Untitled Resume', content: {}, owner_id: user.id })
       .select()
       .single();
-
     if (error) return rejectWithValue(error.message);
     return data;
   }
@@ -53,7 +55,6 @@ export const saveResume = createAsyncThunk(
       .eq('id', id)
       .select()
       .single();
-
     if (error) return rejectWithValue(error.message);
     return data;
   }
@@ -68,6 +69,20 @@ export const deleteResume = createAsyncThunk(
   }
 );
 
+export const renameResume = createAsyncThunk(
+  'resumes/renameResume',
+  async ({ id, itemName }, { rejectWithValue }) => {
+    const { data, error } = await supabase
+      .from('resumes')
+      .update({ item_name: itemName })
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) return rejectWithValue(error.message);
+    return data;
+  }
+);
+
 export const toggleShareResume = createAsyncThunk(
   'resumes/toggleShareResume',
   async ({ id, isPublic }, { rejectWithValue }) => {
@@ -77,14 +92,13 @@ export const toggleShareResume = createAsyncThunk(
       .eq('id', id)
       .select()
       .single();
-
     if (error) return rejectWithValue(error.message);
     return data;
   }
 );
 
-const resumeSlice = createSlice({
-  name: 'resume',
+const resumesSlice = createSlice({
+  name: 'resumes',
   initialState: {
     list: [],
     currentResume: null,
@@ -97,13 +111,12 @@ const resumeSlice = createSlice({
       state.currentResume = null;
     },
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(fetchResumes.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchResumes.fullfilled, (state, action) => {
+      .addCase(fetchResumes.fulfilled, (state, action) => {
         state.list = action.payload;
         state.status = 'idle';
       })
@@ -114,8 +127,9 @@ const resumeSlice = createSlice({
       .addCase(fetchResumeById.pending, (state) => {
         state.status = 'loading';
         state.currentResume = null;
+        state.error = null;
       })
-      .addCase(fetchResumeById.fullfilled, (state, action) => {
+      .addCase(fetchResumeById.fulfilled, (state, action) => {
         state.currentResume = action.payload;
         state.status = 'idle';
       })
@@ -123,13 +137,16 @@ const resumeSlice = createSlice({
         state.status = 'idle';
         state.error = action.payload;
       })
-      .addCase(createResume.fullfilled, (state, action) => {
+      .addCase(createResume.fulfilled, (state, action) => {
         state.list.unshift(action.payload);
+      })
+      .addCase(createResume.rejected, (state, action) => {
+        state.error = action.payload;
       })
       .addCase(saveResume.pending, (state) => {
         state.saveStatus = 'saving';
       })
-      .addCase(saveResume.fullfilled, (state, action) => {
+      .addCase(saveResume.fulfilled, (state, action) => {
         state.saveStatus = 'saved';
         state.currentResume = action.payload;
         const idx = state.list.findIndex((r) => r.id === action.payload.id);
@@ -139,10 +156,15 @@ const resumeSlice = createSlice({
         state.saveStatus = 'idle';
         state.error = action.payload;
       })
-      .addCase(deleteResume.fullfilled, (state, action) => {
+      .addCase(deleteResume.fulfilled, (state, action) => {
         state.list = state.list.filter((r) => r.id !== action.payload);
       })
-      .addCase(toggleShareResume.fullfilled, (state, action) => {
+      .addCase(renameResume.fulfilled, (state, action) => {
+        state.currentResume = action.payload;
+        const idx = state.list.findIndex((r) => r.id === action.payload.id);
+        if (idx !== -1) state.list[idx] = action.payload;
+      })
+      .addCase(toggleShareResume.fulfilled, (state, action) => {
         state.currentResume = action.payload;
         const idx = state.list.findIndex((r) => r.id === action.payload.id);
         if (idx !== -1) state.list[idx] = action.payload;
@@ -150,5 +172,5 @@ const resumeSlice = createSlice({
   },
 });
 
-export const { clearCurrentResume } = resumeSlice.actions;
-export default resumeSlice.reducer;
+export const { clearCurrentResume } = resumesSlice.actions;
+export default resumesSlice.reducer;

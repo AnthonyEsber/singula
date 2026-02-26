@@ -12,3 +12,14 @@
   font-size: 4rem;
   color: var(--orange);
 }
+
+@media (max-width: 768px) {
+  .grid {
+    gap: 1rem;
+  }
+
+  .newCard {
+    width: 100%;
+    max-width: 320px;
+  }
+}

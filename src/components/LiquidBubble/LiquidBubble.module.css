@@ -56,3 +56,17 @@
     font-size: 0.85rem;
   }
 }
+
+@media (prefers-color-scheme: light) {
+  .glassBubble {
+    background: rgba(215, 215, 215, 0.54);
+  }
+}
+
+html[data-theme='light'] .glassBubble {
+  background: rgba(215, 215, 215, 0.54);
+}
+
+html[data-theme='dark'] .glassBubble {
+  background: rgba(42, 42, 42, 0.54);
+}

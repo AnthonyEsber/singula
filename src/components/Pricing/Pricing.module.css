@@ -88,6 +88,31 @@
   color: var(--orange);
 }
 
+.buyPlan button:disabled {
+  opacity: 0.4;
+}
+
+.buyPlan button:disabled:hover {
+  background-color: var(--white);
+  cursor: not-allowed;
+}
+
+html[data-theme='light'] .outerPricing,
+html[data-theme='light'] .wrapperPlans {
+  background-image: url(/bg-pattern-slash-light.svg);
+  border-left: 1px solid var(--white);
+  border-right: 1px solid var(--white);
+}
+
+html[data-theme='light'] .outerPlan {
+  background-color: var(--main-bg-color-light);
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .innerPlan ul {
+  color: var(--black);
+}
+
 @media (prefers-color-scheme: light) {
   .outerPricing,
   .wrapperPlans {

@@ -1,0 +1,91 @@
+.wrapper {
+  position: relative;
+}
+
+.shareButton {
+  background: none;
+  border: 1px solid var(--grey);
+  border-radius: 2rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.shareButton:hover {
+  border-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 11rem;
+  background-color: var(--main-bg-color-dark);
+  border: 1px solid var(--grey);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 10;
+}
+.dropdown a {
+  padding: 0;
+}
+
+.dropdownItem {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.875rem;
+  transition: background-color 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background-color: var(--grey);
+}
+
+.dropdownItemMuted {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.dropdownItemMuted:hover {
+  background-color: transparent;
+}
+
+.statusLine {
+  margin: 0;
+  padding: 0.4rem 1rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.disableButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--orange);
+  cursor: pointer;
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+
+html[data-theme='light'] .dropdown {
+  background-color: var(--main-bg-color-light);
+  color: var(--black);
+}
+
+html[data-theme='light'] .dropdownItem:hover {
+  background-color: var(--white);
+}

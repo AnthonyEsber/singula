@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { supabase } from '../lib/supabase';
 
 export const loginUser = createAsyncThunk(
-  'auth/login',
+  'auth/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return rejectWithValue(error.message);
@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
       options: { data: { full_name: fullName } },
     });
     if (error) return rejectWithValue(error.message);
-    return data;
+    return data.user;
   }
 );
 
@@ -60,7 +60,7 @@ const authSlice = createSlice({
         state.status = 'loading';
         state.error = null;
       })
-      .addCase(loginUser.fullfilled, (state, action) => {
+      .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.status = 'idle';
       })
@@ -72,19 +72,20 @@ const authSlice = createSlice({
         state.status = 'loading';
         state.error = null;
       })
-      .addCase(registerUser.fullfilled, (state, action) => {
-        ((state.user = action.payload), (state.status = 'idle'));
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.status = 'idle';
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = 'idle';
         state.error = action.payload;
       })
-      .addCase(logoutUser.fullfilled, (state) => {
+      .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.profile = null;
         state.status = 'idle';
       })
-      .addCase(fetchProfile.fullfilled, (state, action) => {
+      .addCase(fetchProfile.fulfilled, (state, action) => {
         state.profile = action.payload;
         state.status = 'idle';
       })

@@ -39,6 +39,22 @@
   .input {
     background-color: var(--main-bg-color-light);
     color: var(--black);
-    border-color: var(--grey);
+    border-color: var(--white);
   }
+}
+
+html[data-theme='light'] .input {
+  background-color: var(--main-bg-color-light);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+html[data-theme='dark'] .input {
+  border: 1px solid var(--grey);
+  background-color: var(--input-background-dark);
+}
+
+html[data-theme='light'] .input:focus {
+  outline: 1px solid var(--grey);
+  z-index: 1;
 }

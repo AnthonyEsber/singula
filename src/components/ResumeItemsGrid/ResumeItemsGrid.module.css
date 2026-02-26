@@ -3,4 +3,119 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 1.5rem 0rem;
+  align-items: flex-start;
+}
+
+.emptyState {
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--span-text, #7b7a73);
+  margin: 0;
+}
+
+.newCard {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.newCard:hover:not(.newCardDisabled) .newThumbnail {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.newCardDisabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.newThumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1.4142;
+  border-radius: 8px;
+  border: 1px dashed var(--grey, #5e5e5e);
+  background-color: var(--input-background-dark, #191919);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey, #5e5e5e);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.newIcon {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.newCardInfo {
+  padding: 0.65rem 0.25rem;
+}
+
+.newCardLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--grey, #5e5e5e);
+  transition: color 0.2s ease;
+}
+
+.newCard:hover:not(.newCardDisabled) .newCardLabel {
+  color: var(--white);
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  font-family: 'InconsolataBold';
+  font-size: 0.85rem;
+  color: var(--span-text);
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  color: var(--span-text);
+  cursor: pointer;
+  font-family: 'InconsolataBold';
+  font-size: 1rem;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  color: inherit;
+}
+
+.pagination button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+html[data-theme='light'] .newThumbnail {
+  background-color: var(--white);
+}
+
+html[data-theme='dark'] .newThumbnail {
+  background-color: var(--input-background-dark);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    gap: 1rem;
+  }
+
+  .newCard {
+    width: 100%;
+    max-width: 320px;
+  }
 }

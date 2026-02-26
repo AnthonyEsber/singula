@@ -23,3 +23,56 @@
   gap: 1.5rem;
   font-size: 1.2rem;
 }
+
+.sortControls button {
+  background: none;
+  border: none;
+  color: var(--span-text);
+  cursor: pointer;
+  font-family: 'InconsolataBold';
+  font-size: 1.2rem;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.sortControls button:hover {
+  color: inherit;
+}
+
+.sortControls button.active {
+  color: var(--orange);
+}
+
+html[data-theme='light'] .formContainer input {
+  background-color: rgba(244, 243, 240, 0.75);
+  border-color: var(--white);
+}
+
+html[data-theme='dark'] .formContainer input {
+  background-color: var(--input-background-dark);
+}
+
+html[data-theme='light'] .sortControls button:hover {
+  color: var(--input-background-dark);
+}
+
+html[data-theme='dark'] .formContainer input {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .formContainer form {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .formContainer input {
+    width: 100%;
+  }
+
+  .sortControls {
+    gap: 1rem;
+    font-size: 1rem;
+  }
+}

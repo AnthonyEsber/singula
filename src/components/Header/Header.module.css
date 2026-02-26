@@ -4,7 +4,7 @@ header {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  z-index: 3;
+  z-index: 9999;
 }
 
 nav {
@@ -28,6 +28,7 @@ nav {
 .logo {
   max-height: 2rem;
   margin: 0 1rem;
+  cursor: pointer;
 }
 .localMenu {
   flex: 1;
@@ -35,20 +36,45 @@ nav {
   gap: 1rem;
 }
 
+.navItem {
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: 'Makira', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.navItem:hover {
+  opacity: 1;
+}
+
 .externalMenu {
   display: flex;
   gap: 1rem;
   margin: 0rem 1.5rem;
+  align-items: center;
 }
 
 @media (prefers-color-scheme: light) {
-  .headerOuter {
+  html:not([data-theme]) .headerOuter {
     border-color: var(--white);
   }
 
-  nav {
+  html:not([data-theme]) nav {
     border-bottom: 1px solid var(--white);
   }
+}
+
+html[data-theme='light'] .headerOuter {
+  border-color: var(--white);
+}
+
+html[data-theme='light'] nav {
+  border-bottom: 1px solid var(--white);
 }
 a {
   padding: 0.5rem 1.5rem;
@@ -102,7 +128,157 @@ a {
 }
 
 @media (prefers-color-scheme: light) {
-  header {
+  html:not([data-theme]) header {
     background-color: rgba(244, 243, 240, 0.75);
   }
+}
+
+html[data-theme='light'] header {
+  background-color: rgba(244, 243, 240, 0.75);
+}
+
+html[data-theme='dark'] header {
+  background-color: rgba(9, 9, 11, 0.75);
+}
+
+.userMenu {
+  position: relative;
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 1px solid var(--orange);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.userButton:hover {
+  background-color: var(--orange);
+  color: var(--black);
+}
+
+.userName {
+  font-size: 0.875rem;
+  text-transform: capitalize;
+}
+
+.tierBadge {
+  font-size: 0.7rem;
+  font-family: 'InconsolataBold', monospace;
+  text-transform: uppercase;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.tierPro {
+  background-color: var(--orange);
+  color: var(--black);
+}
+
+.tierFree {
+  background-color: var(--grey);
+  color: var(--white);
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 8rem;
+  background-color: var(--main-bg-color-dark);
+  border: 1px solid var(--grey);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 10;
+  transform-origin: top right;
+  animation: dropdownIn 0.15s ease forwards;
+}
+
+.dropdownItem {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.875rem;
+  transition: background-color 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background-color: var(--grey);
+}
+
+.themeToggle {
+  background: none;
+  border: 1px solid var(--grey);
+  border-radius: 2rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.themeToggle:hover {
+  border-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) header {
+    background-color: rgba(244, 243, 240, 0.75);
+  }
+}
+
+html[data-theme='dark'] header {
+  color: rgba(244, 243, 240, 0.75);
+}
+
+html[data-theme='light'] header {
+  color: var(--black);
+}
+
+html[data-theme='light'] header {
+  background-color: rgba(244, 243, 240, 0.75);
+}
+
+html[data-theme='dark'] header {
+  background-color: rgba(9, 9, 11, 0.75);
+}
+
+html[data-theme='light'] .externalMenu {
+  color: var(--black);
+}
+
+html[data-theme='light'] .dropdown {
+  background-color: var(--main-bg-color-light);
+}
+
+html[data-theme='light'] .dropdownItem:hover {
+  background-color: var(--white);
+}
+.userMenu {
+  position: relative;
 }

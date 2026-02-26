@@ -25,7 +25,7 @@
 
 .addBtn:hover {
   border-color: var(--white);
-  color: var(---white);
+  color: var(--white);
 }
 
 .addMenu {
@@ -73,5 +73,30 @@
   .addMenuItem {
     color: var(--black);
     border-bottom-color: #b0afa9;
+  }
+}
+
+html[data-theme='light'] .addBtn {
+  color: var(--grey);
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .addMenu {
+  background-color: var(--main-bg-color-light);
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .addMenuItem {
+  color: var(--black, #191919);
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .addMenuItem:hover {
+  background: var(--white);
+}
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 0.75rem;
   }
 }

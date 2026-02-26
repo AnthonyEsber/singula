@@ -20,7 +20,9 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.backButton {
+  display: none;
+}
 .label {
   font-family: 'InconsolataBold', monospace;
   font-size: 0.7rem;
@@ -65,5 +67,39 @@
 
   .label {
     color: #5e5e5e;
+  }
+}
+
+html[data-theme='light'] .panel {
+  background-color: var(--main-bg-color-light);
+  background-image: url(/bg-pattern-slash-light.svg);
+}
+
+html[data-theme='light'] .label {
+  color: #5e5e5e;
+}
+
+html[data-theme='light'] .downloadBtn {
+  background: var(--orange);
+}
+
+@media (max-width: 768px) {
+  .panel {
+    min-height: 100%;
+    position: static;
+    height: auto;
+  }
+
+  .backButton {
+    display: inline-block;
+    background: none;
+    border: 1px solid var(--grey);
+    color: var(--span-text);
+    font-family: 'InconsolataBold', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
   }
 }

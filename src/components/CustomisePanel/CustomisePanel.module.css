@@ -98,3 +98,24 @@
     border-color: #b0afa9;
   }
 }
+
+html[data-theme='light'] .field {
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .select {
+  border-color: var(--white);
+  background-color: var(--input-background-light);
+  color: var(--grey);
+}
+html[data-theme='light'] .colorPicker {
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .sizeBtn {
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .sizeBtn:hover {
+  background: var(--grey);
+}
