@@ -2,7 +2,7 @@ import styles from './Pricing.module.css';
 
 function Pricing() {
   return (
-    <div className={styles.pricingSection}>
+    <div id="pricing" className={styles.pricingSection}>
       <div className={styles.outerPricing}>
         <div className={styles.innerPricing}>
           <span>[02] Plans</span>
@@ -39,7 +39,7 @@ function Pricing() {
               <li>Multiple Resumes</li>
             </ul>
             <div className={styles.buyPlan}>
-              <button>Start trial</button>
+              <button disabled>Start trial</button>
             </div>
           </div>
         </div>

@@ -86,10 +86,30 @@
   gap: 1rem;
 }
 
+.innerFeature p {
+  flex: 1;
+}
+
 .innerFeature img {
-  flex: 1/4;
   min-height: 2rem;
   max-width: 100%;
+}
+
+html[data-theme='light'] .outerIntroduction {
+  border-bottom: 1px solid var(--white);
+}
+
+html[data-theme='light'] .outerFeatureText,
+html[data-theme='light'] .wrapperFeatures {
+  background-image: url(/bg-pattern-slash-light.svg);
+  border-left: 1px solid var(--white);
+  border-right: 1px solid var(--white);
+}
+
+html[data-theme='light'] .outerInnerText,
+html[data-theme='light'] .outerFeature {
+  background-color: var(--main-bg-color-light);
+  border-color: var(--white);
 }
 
 @media (prefers-color-scheme: light) {
@@ -177,4 +197,8 @@
     border-left-width: 1px;
     border-left-style: solid;
   }
+}
+
+.cloudImg {
+  max-height: 16rem;
 }

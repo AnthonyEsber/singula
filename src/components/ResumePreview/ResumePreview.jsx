@@ -7,7 +7,7 @@ function ResumePreview({ content, isThumbnail }) {
     return <div className={styles.placeholder}>No preview available</div>;
   }
 
-  const { fullName, phoneNumber, location, email, sections = [], customization } = content;
+  const { fullName, phoneNumber, location, email, sections = [], customization = {} } = content;
 
   const scale =
     SCALE_MAP[customization.fontSize] && !isThumbnail

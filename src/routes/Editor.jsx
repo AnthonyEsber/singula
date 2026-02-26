@@ -5,7 +5,15 @@ import PreviewPanel from '../components/PreviewPanel/PreviewPanel';
 import SectionsPanel from '../components/SectionsPanel/SectionsPanel';
 import styles from '../styles/Userland.module.css';
 import { DUMMY_RESUME } from '../utils/mockResume';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  clearCurrentResume,
+  deleteResume,
+  fetchResumeById,
+  renameResume,
+  saveResume,
+} from '../store/resumeSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ALL_SECTION_IDS = ['profile', 'experience', 'education', 'skills'];
 
@@ -22,26 +30,80 @@ const EMPTY_SECTION = {
   skills: { sectionId: 'skills', skills: [], isHidden: false },
 };
 
+const DEFAULT_CUSTOMIZATION = {
+  accentColor: '#1a1a1a',
+  fontFamily: 'Makira, sans-serif',
+  fontSize: 'medium',
+};
 function Editor() {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const found = DUMMY_RESUME.find((r) => r.id === Number(id));
-
-  const [sections, setSections] = useState(found ? found.content.sections : []);
-  const [customization, setCustomization] = useState({
-    accentColor: '#1a1a1a',
-    fontFamily: 'Makira, sans-serif',
-    fontSize: 'medium',
+  const dispatch = useDispatch();
+  const { currentResume, status, saveStatus } = useSelector((s) => s.resumes);
+  const user = useSelector((s) => s.auth.user);
+  const [itemName, setItemName] = useState('');
+  const [editingName, setEditingName] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [fetchSettledFor, setFetchSettledFor] = useState(null);
+  const [showMobilePreview, setShowMobilePreview] = useState(false);
+  const [formData, setFormData] = useState({
+    sections: [],
+    customization: DEFAULT_CUSTOMIZATION,
+    personalInfo: { fullName: '', email: '', phoneNumber: '', location: '' },
   });
-  const [personalInfo, setPersonalInfo] = useState({
-    fullName: found ? found.content.fullName : '',
-    email: found ? found.content.email : '',
-    phoneNumber: found ? found.content.phoneNumber : '',
-    location: found ? found.content.location : '',
-  });
+  const { sections, customization, personalInfo } = formData;
+  const [syncedResumeId, setSyncedResumeId] = useState(null);
 
-  if (!found) {
+  if (currentResume && currentResume.id !== syncedResumeId) {
+    setSyncedResumeId(currentResume.id);
+    setItemName(currentResume.item_name);
+    const content = currentResume.content ?? {};
+    setFormData({
+      sections: content.sections ?? [],
+      customization: content.customization ?? DEFAULT_CUSTOMIZATION,
+      personalInfo: {
+        fullName: content.fullName ?? '',
+        email: content.email ?? '',
+        phoneNumber: content.phoneNumber ?? '',
+        location: content.location ?? '',
+      },
+    });
+  }
+
+  const setSections = (updater) =>
+    setFormData((prev) => ({
+      ...prev,
+      sections: typeof updater === 'function' ? updater(prev.sections) : updater,
+    }));
+
+  const setCustomization = (updater) =>
+    setFormData((prev) => ({
+      ...prev,
+      customization: typeof updater === 'function' ? updater(prev.customization) : updater,
+    }));
+
+  const setPersonalInfo = (updater) =>
+    setFormData((prev) => ({
+      ...prev,
+      personalInfo: typeof updater === 'function' ? updater(prev.personalInfo) : updater,
+    }));
+
+  useEffect(() => {
+    dispatch(fetchResumeById(id)).then(() => setFetchSettledFor(id));
+    return () => {
+      dispatch(clearCurrentResume());
+    };
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (!currentResume || !user) return;
+    if (currentResume.owner_id !== user.id) {
+      navigate('/dashboard');
+    }
+  }, [currentResume, user, navigate]);
+
+  if (fetchSettledFor !== id || status === 'loading') return null;
+  if (!currentResume) {
     return (
       <div className={styles.notFound}>
         <p>Resume not found.</p>
@@ -99,9 +161,75 @@ function Editor() {
   function updateCustomization(key, value) {
     setCustomization((prev) => ({ ...prev, [key]: value }));
   }
+
+  function handleNameUpdate() {
+    const trimmed = itemName.trim();
+
+    if (trimmed && trimmed !== currentResume.item_name) {
+      dispatch(renameResume({ id, itemName: trimmed }));
+    }
+    setEditingName(false);
+  }
+
+  function handleDelete() {
+    if (confirmDelete) {
+      const resumeId = String(id);
+      dispatch(deleteResume(resumeId)).then(() => {
+        dispatch(clearCurrentResume());
+        navigate('/dashboard');
+      });
+    } else {
+      setConfirmDelete(true);
+      return;
+    }
+  }
+
+  function handleSave() {
+    dispatch(
+      saveResume({
+        id,
+        itemName: currentResume.item_name ?? 'Untitled Resume',
+        content: {
+          ...personalInfo,
+          sections,
+          customization,
+        },
+      })
+    );
+  }
   return (
-    <div className={styles.editorPage}>
+    <div className={`${styles.editorPage} ${showMobilePreview ? styles.mobilePreviewOpen : ''}`}>
       <div className={styles.composerPanel}>
+        <button className={styles.backButton} onClick={() => navigate('/dashboard')}>
+          ← Back to Dashboard
+        </button>
+        <h1 className={styles.composerTitle}>
+          Editing{' '}
+          {editingName ? (
+            <input
+              className={styles.editableTitle}
+              type="text"
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
+              onBlur={handleNameUpdate}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') e.target.blur();
+                if (e.key === 'Escape') setEditingName(false);
+              }}
+            />
+          ) : (
+            <span
+              className={styles.displayTitle}
+              onClick={() => {
+                setItemName(currentResume.item_name ?? 'Untitled Resume');
+                setEditingName(true);
+              }}
+            >
+              {' '}
+              {currentResume.item_name ?? 'Untitled Resume'}
+            </span>
+          )}
+        </h1>
         <PersonalInformationPanel personalInfo={personalInfo} onChange={updatePersonalInfo} />
         <SectionsPanel
           sections={sections}
@@ -113,9 +241,27 @@ function Editor() {
           onAddSkill={addSkill}
           onRemoveSkill={removeSkill}
         />
+
         <CustomisePanel customization={customization} onChange={updateCustomization} />
+        <div className={styles.saveBar}>
+          <button className={styles.deleteButton} onClick={handleDelete}>
+            {confirmDelete ? 'Click again to Delete.' : 'Delete'}
+          </button>
+          <button className={styles.previewButton} onClick={() => setShowMobilePreview(true)}>
+            Preview
+          </button>
+          <button
+            className={styles.saveButton}
+            onClick={handleSave}
+            disabled={saveStatus === 'saving'}
+          >
+            {saveStatus === 'saving' ? 'Saving...' : saveStatus === 'saved' ? 'Saved!' : 'Save'}
+          </button>
+        </div>
       </div>
-      <PreviewPanel content={previewContent} />
+      <div className={styles.previewWrapper}>
+        <PreviewPanel content={previewContent} onBack={() => setShowMobilePreview(false)} />
+      </div>
     </div>
   );
 }

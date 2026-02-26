@@ -1,0 +1,29 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: var(--main-bg-color-dark, #09090b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) .overlay {
+    background-color: var(--main-bg-color-light, #f4f3f0);
+  }
+}
+
+html[data-theme='light'] .overlay {
+  background-color: var(--main-bg-color-light, #f4f3f0);
+}
+
+html[data-theme='dark'] .overlay {
+  background-color: var(--main-bg-color-dark, #09090b);
+}

@@ -91,7 +91,6 @@
   transition: all 0.1s ease;
 }
 
-/* Textarea that follows an input should connect visually */
 .input ~ .textarea {
   border-top: none;
 }
@@ -162,5 +161,37 @@
     background-color: #ebebeb;
     border-color: #b0afa9;
     color: var(--black);
+  }
+}
+
+html[data-theme='light'] .card {
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .input,
+html[data-theme='light'] .textarea {
+  background-color: var(--main-bg-color-light);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .cardHeader {
+  background-color: transparent;
+}
+
+html[data-theme='light'] .cardTitle,
+html[data-theme='light'] .actionBtn {
+  color: var(--grey);
+}
+
+html[data-theme='light'] .skillTag {
+  background-color: #ebebeb;
+  border-color: #b0afa9;
+  color: var(--black);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 0.75rem;
   }
 }

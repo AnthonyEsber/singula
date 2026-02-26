@@ -3,7 +3,7 @@ import herobg from '../../assets/cv_hero.svg';
 import LiquidBubble from '../LiquidBubble/LiquidBubble';
 function Hero() {
   return (
-    <div className={styles.outerHero}>
+    <div id="hero" className={styles.outerHero}>
       <div className={styles.introText}>
         <h1>
           Create <span>Resumes</span> that <br /> help you <span>grow</span>.

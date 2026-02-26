@@ -59,6 +59,7 @@
   --main-bg-color-dark: rgba(9, 9, 11, 1);
 
   --white: #d4d2cb;
+  --button-hover: #bfbeb8;
   --white-hover: #a09f99;
   --grey: #5e5e5e;
   --black: #09090b;
@@ -86,8 +87,8 @@ button {
   font-family: 'Makira', sans-serif;
 }
 @media (prefers-color-scheme: light) {
-  html {
-    color: #213547;
+  html:not([data-theme]) {
+    color: var(--black);
     background-color: var(--main-bg-color-light);
   }
   p,
@@ -96,4 +97,20 @@ button {
   h3 {
     color: var(--black);
   }
+}
+
+html[data-theme='light'] {
+  border-color: var(--white);
+  background-color: var(--main-bg-color-light);
+}
+
+html[data-theme='light'] p,
+html[data-theme='light'] h1,
+html[data-theme='light'] h2,
+html[data-theme='light'] h3 {
+  color: var(--black);
+}
+
+html[data-theme='dark'] {
+  color: var(--white);
 }

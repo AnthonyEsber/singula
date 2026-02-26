@@ -91,6 +91,33 @@ textarea {
   color: var(--black);
 }
 
+html[data-theme='light'] .outerContact,
+html[data-theme='light'] .outerForm {
+  background-image: url(/bg-pattern-slash-light.svg);
+  border-left: 1px solid var(--white);
+  border-right: 1px solid var(--white);
+}
+
+html[data-theme='light'] .outerForm {
+  border: 1px solid var(--white);
+  border-top: none;
+  border-color: var(--white);
+}
+
+html[data-theme='light'] .innerForm form {
+  border-top: none;
+  border-bottom: none;
+  border: 1px solid var(--white);
+  background-color: var(--main-bg-color-light);
+}
+
+html[data-theme='light'] .innerForm input,
+html[data-theme='light'] .innerForm textarea {
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  color: var(--black);
+}
+
 @media (prefers-color-scheme: light) {
   .outerContact,
   .outerForm {
@@ -113,9 +140,6 @@ textarea {
   .innerForm textarea {
     background-color: var(--white);
     border: 1px solid var(--white);
-  }
-
-  .innerPlan ul {
     color: var(--black);
   }
 }
