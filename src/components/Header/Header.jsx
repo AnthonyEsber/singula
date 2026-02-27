@@ -7,10 +7,7 @@ import { useState } from 'react';
 import { setTheme } from '../../store/uiSlice';
 import { logoutUser } from '../../store/authSlice';
 import ShareMenu from '../ShareMenu/ShareMenu';
-/**
- *
- * @todo Finish menu
- */
+
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

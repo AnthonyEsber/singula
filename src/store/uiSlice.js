@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const defaultState = {
   theme: 'system',
   resumeFilters: { searchText: '', sortBy: 'date', sortDir: 'desc', showPublicOnly: false },
-  lastViewedPage: '/dashboard',
   contactDraft: { fullName: '', email: '', message: '' },
 };
 
@@ -26,9 +25,6 @@ const uiSlice = createSlice({
     setShowPublicOnly(state, action) {
       state.resumeFilters.showPublicOnly = action.payload;
     },
-    setLastViewedPage(state, action) {
-      state.lastViewedPage = action.payload;
-    },
     setContactDraft(state, action) {
       state.contactDraft = { ...state.contactDraft, ...action.payload };
     },
@@ -44,7 +40,6 @@ export const {
   setSortBy,
   setSortDir,
   setShowPublicOnly,
-  setLastViewedPage,
   setContactDraft,
   clearContactDraft,
 } = uiSlice.actions;
