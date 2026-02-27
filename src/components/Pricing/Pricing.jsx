@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import styles from './Pricing.module.css';
 
 function Pricing() {
@@ -22,7 +23,9 @@ function Pricing() {
               <li>Unlimited PDF exports</li>
             </ul>
             <div className={styles.buyPlan}>
-              <button>Get Started</button>
+              <Link to={'/register'}>
+                <button>Get Started</button>
+              </Link>
             </div>
           </div>
         </div>
