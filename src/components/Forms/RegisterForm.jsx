@@ -83,7 +83,9 @@ function RegisterForm() {
             {status === 'loading' ? 'Creating account...' : 'Get started'}
           </button>
         </div>
-        <div className={styles.switchFormModeAsk}>Already a user? Click here to login.</div>
+        <div onClick={() => navigate('/login')} className={styles.switchFormModeAsk}>
+          Already a user? Click here to login.
+        </div>
       </form>
     </div>
   );

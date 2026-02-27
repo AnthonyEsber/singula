@@ -19,7 +19,6 @@
   background-color: var(--input-background-dark);
   font-size: 1rem;
   font-family: 'InconsolataBold';
-  text-transform: uppercase;
   transition: all 0.1s ease;
 }
 

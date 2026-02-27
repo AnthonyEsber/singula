@@ -8,7 +8,6 @@ function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { status, error } = useSelector((s) => s.auth);
-  const lastPage = useSelector((s) => s.ui.lastViewedPage);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,7 +15,7 @@ function LoginForm() {
     e.preventDefault();
     const result = await dispatch(loginUser({ email, password }));
     if (result.meta.requestStatus === 'fulfilled') {
-      navigate(lastPage);
+      navigate('/dashboard');
     }
   }
 
@@ -33,7 +32,7 @@ function LoginForm() {
         />
         <input
           type="password"
-          placeholder="**"
+          placeholder="********"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

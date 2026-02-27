@@ -14,7 +14,8 @@ function SharedResume() {
     async function load() {
       const { data, error } = await supabase
         .from('resumes')
-        .select('content, item_name')
+        .select('*')
+        .eq('id', id)
         .eq('is_public', true)
         .single();
       if (error || !data) {
